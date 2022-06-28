@@ -4,7 +4,8 @@ import Search from "./components/search.js";
 import ImageCard from "./components/ImageCard.js";
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-
+import Welcome from "./components/Welcome.js";
+// eslint-disable-next-line
 const UNSPLASH_KEY = "dRfgDAQ9bnf3q-h7lQ_SKFzgk7P2uVQjsu2_JzVb-Nk";
 
 function App() {
@@ -33,9 +34,8 @@ function App() {
   //console.log(word);
   // console.log(UNSPLASH_KEY);
 
-  const handleDeleteImage = (id)=>{
-    setImages(images.filter((image)=>image.id!==id));
-
+  const handleDeleteImage = (id) => {
+    setImages(images.filter((image) => image.id !== id));
   };
 
   return (
@@ -48,13 +48,17 @@ function App() {
         handleSubmit={handleSearchSubmit}
       ></Search>
       <Container className="mt-4">
-        <Row xs={1} md={2} lg={3}>
-          {images.map((image, i) => (
-            <Col className="pb-3" key={i}>
-            <ImageCard image={image} deleteImage={handleDeleteImage}/>
-            </Col>
-          ))}
-        </Row>
+        {images.length ? (
+          <Row xs={1} md={2} lg={3}>
+            {images.map((image, i) => (
+              <Col className="pb-3" key={i}>
+                <ImageCard image={image} deleteImage={handleDeleteImage} />
+              </Col>
+            ))}
+          </Row>
+        ) : (
+          <Welcome />
+        )}
       </Container>
     </div>
   );
