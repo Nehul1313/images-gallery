@@ -6,6 +6,8 @@ import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Welcome from "./components/Welcome.js";
 // eslint-disable-next-line
+
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5050";
 const UNSPLASH_KEY = "dRfgDAQ9bnf3q-h7lQ_SKFzgk7P2uVQjsu2_JzVb-Nk";
 
 function App() {
@@ -18,7 +20,7 @@ function App() {
     e.preventDefault();
     //console.log(word);
     fetch(
-      `https://api.unsplash.com/photos/random/?query=${word}&client_id=${UNSPLASH_KEY}`
+      `${API_URL}/new-image?query=${word}&client_id=${UNSPLASH_KEY}`
     )
       .then((res) => res.json())
       .then((data) => {
