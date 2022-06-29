@@ -8,16 +8,15 @@ import requests
 UNSPLASH_URL = 'https://api.unsplash.com/photos/random'
 #UNSPLASH_KEY = os.environ.get("UNSPLASH_KEY","")
 UNSPLASH_KEY = 'dRfgDAQ9bnf3q-h7lQ_SKFzgk7P2uVQjsu2_JzVb-Nk'
+DEBUG = bool(os.environ.get('DEBUG', True))
 
 
 if not UNSPLASH_KEY:
     raise EnvironmentError("UNSPLASH_KEY not set")
 
 
-
-
-
 app = Flask(__name__)
+app.config['DEBUG'] = DEBUG
 
 
 @app.route("/new-image")
@@ -27,7 +26,6 @@ def new_image():
     headers = {
         'Accept-Version': 'v1',
         'Authorization': 'Client-ID ' + UNSPLASH_KEY,
-
     }
 
     params = {
