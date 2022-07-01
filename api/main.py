@@ -33,6 +33,7 @@ app.config["DEBUG"] = DEBUG
 
 @app.route("/new-image")
 def new_image():
+    """Api service for retrieving images"""
     word = request.args.get("query")
 
     headers = {
@@ -49,6 +50,10 @@ def new_image():
 
 @app.route("/images", methods=["GET", "POST"])
 def images():
+    """
+    Inserts images to the mongo db
+    Available services: GET, POST
+    """
     if request.method == "GET":
         # read images from the database
         images = images_collection.find({})
