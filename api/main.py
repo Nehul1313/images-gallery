@@ -1,8 +1,11 @@
 # save this as app.py
-from flask import Flask, request
 import os
+from flask import Flask, request
+from dotenv import load_dotenv
 import requests
 from flask_cors import CORS
+
+# from mongo_client import insert_test_document
 
 # from dotenv import load_dotenv
 
@@ -20,6 +23,8 @@ if not UNSPLASH_KEY:
 app = Flask(__name__)
 CORS(app)
 app.config["DEBUG"] = DEBUG
+
+# insert_test_document()
 
 
 @app.route("/new-image")
